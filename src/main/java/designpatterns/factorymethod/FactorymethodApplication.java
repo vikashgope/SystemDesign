@@ -1,4 +1,4 @@
-package com.vikash.factorymethod;
+package designpatterns.factorymethod;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

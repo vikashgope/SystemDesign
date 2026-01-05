@@ -1,6 +1,6 @@
-package com.vikash.factorymethod;
+package designpatterns.factorymethod;
 
-public class InfoLogger implements ILogger{
+public class InfoLogger implements ILogger {
 
     @Override
     public void log()
