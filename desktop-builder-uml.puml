@@ -1,0 +1,95 @@
+@startuml Desktop Builder Pattern UML Diagram
+
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+
+title Desktop Builder Pattern - Class Diagram
+
+' Product class
+class Desktop {
+  - name: String
+  - ram: String
+  - processor: String
+  - monitor: String
+  --
+  + getName(): String
+  + setName(name: String): void
+  + getRam(): String
+  + setRam(ram: String): void
+  + getProcessor(): String
+  + setProcessor(processor: String): void
+  + getMonitor(): String
+  + setMonitor(monitor: String): void
+}
+
+' Abstract Builder
+abstract class DesktopBuilder {
+  # desktop: Desktop
+  --
+  + DesktopBuilder()
+  + {abstract} setName(): void
+  + {abstract} setRam(): void
+  + {abstract} setProcessor(): void
+  + {abstract} setMonitor(): void
+  + build(): Desktop
+}
+
+' Concrete Builder
+class DellDesktopBuilder {
+  --
+  + setName(): void
+  + setRam(): void
+  + setProcessor(): void
+  + setMonitor(): void
+}
+
+' Director
+class DesktopDirector {
+  - builder: DesktopBuilder
+  --
+  + DesktopDirector(builder: DesktopBuilder)
+  + buildDesktop(): Desktop
+}
+
+' Client/Application
+class BuilderApplication {
+  --
+  + {static} main(args: String[]): void
+}
+
+' Relationships
+DesktopBuilder ||-- Desktop : creates >
+DellDesktopBuilder --|> DesktopBuilder : extends
+DesktopDirector o-- DesktopBuilder : uses
+BuilderApplication ..> DesktopDirector : creates
+BuilderApplication ..> DellDesktopBuilder : creates
+BuilderApplication ..> Desktop : uses
+
+' Notes
+note right of DesktopBuilder
+  Abstract builder defines the
+  construction steps for creating
+  a Desktop product
+end note
+
+note right of DellDesktopBuilder
+  Concrete builder implements
+  specific construction logic
+  for Dell desktop configuration
+end note
+
+note right of DesktopDirector
+  Director orchestrates the
+  building process using the
+  builder interface
+end note
+
+note bottom of Desktop
+  Product class represents
+  the complex object being
+  constructed with Lombok
+  annotations for getters/setters
+end note
+
+@enduml
