@@ -11,13 +11,8 @@ package com.designpatterns.decorator;
 
     }
     @Override
-    public String getDescription()
-     {
-         return "Pizza";
-     }
-     @Override
-     public double getCost()
-     {
-         return 100;
-     }
+    public abstract String getDescription();
+
+    @Override
+     public abstract double getCost();
 }
